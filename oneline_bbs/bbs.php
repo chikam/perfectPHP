@@ -92,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 <?php
   mysql_free_result($result);
   mysql_close($link);
+  header('Location: http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 ?>
 
 </body>
