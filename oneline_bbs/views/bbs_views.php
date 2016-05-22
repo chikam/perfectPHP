@@ -10,13 +10,13 @@
   <form action="bbs.php" method="post">
     <?php if (count($errors)): ?>
     <ul class="error_list">
-      <?php foreach($errors as $error): ?>
+      <?php foreach ($errors as $error): ?>
       <li>
         <?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?>
       </li>
       <?php endforeach; ?>
     </ul>
-    <?php endif ; ?>
+    <?php endif; ?>
     名前：<input type="text" name="name" /><br />
     ひとこと：<input type="text" name="comment" size="60" /><br />
     <input type="submit" name="submit" value="送信">
