@@ -72,5 +72,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     <input type="submit" name="submit" value="送信">
   </form>
 
+  <?php
+  $sql = "SELECT * FROM `post` ORDER BY `created_at` DESC";
+  $result = mysql_query($sql, $link);
+  ?>
+
+  <?php if ($result !== false && mysql_num_rows($result)): ?>
+  <ul>
+    <?php while ($post = mysql_fetch_assoc($result)): ?>
+    <li>
+      <?php echo htmlspecialchars($post['name'], ENT_QUOTES, 'UTF-8'); ?>：
+      <?php echo htmlspecialchars($post['comment'], ENT_QUOTES, 'UTF-8'); ?>
+      - <?php echo htmlspecialchars($post['created_at'], ENT_QUOTES, 'UTF-8'); ?>
+    </li>
+    <?php endwhile; ?>
+  </ul>
+  <?php endif; ?>
+
+<?php
+  mysql_free_result($result);
+  mysql_close($link);
+?>
+
 </body>
 </html>
