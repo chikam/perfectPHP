@@ -56,7 +56,7 @@ abstract class Application
 
     protected function getResponse()
     {
-        return $this->getResponse;
+        return $this->response;
     }
 
     protected function getSession()
