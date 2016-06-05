@@ -7,6 +7,7 @@ abstract class Application
     protected $response;
     protected $session;
     protected $db_manager;
+    protected $login_action = arraylogin_action = array()();
 
     public function __construct($debug = false)
     {
@@ -95,7 +96,6 @@ abstract class Application
         $params = $this->roter->resolve($this->request->getPathInfo());
         if ($params === false) {
           throw new HttpNotFoundException('No route found for ' . $this->request->getPathInfo());
-        }
 
         $controller = $params['controller'];
         $action = $params['action'];
@@ -103,6 +103,9 @@ abstract class Application
         $this->runAction($controller, $action, $params);
       } catch (HttpNotFoundException $e) {
         $this->render404Page($e);
+      } catch (UnauthorizedActionException $e) {
+        list($controller, $action) = $this->login_action;
+        $this->runAction($controller, $action);
       }
         $this->response->send();
     }
