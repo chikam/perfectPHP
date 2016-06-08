@@ -9,7 +9,7 @@ class ClassLoader
         sql_autoload_register(array($this, 'loadClass'));
     }
 
-    public function resisterDir($dir)
+    public function registerDir($dir)
     {
         $this->dirs[] = $dir;
     }
