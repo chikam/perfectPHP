@@ -1,6 +1,6 @@
 <?php
 
-class MiniBlogApplication
+class MiniBlogApplication extends Application
 {
     protected $login_action = array('account', 'signin');
 

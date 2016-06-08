@@ -7,7 +7,7 @@ abstract class Application
     protected $response;
     protected $session;
     protected $db_manager;
-    protected $login_action = arraylogin_action = array()();
+    protected $login_action = array();
 
     public function __construct($debug = false)
     {
@@ -96,6 +96,7 @@ abstract class Application
         $params = $this->roter->resolve($this->request->getPathInfo());
         if ($params === false) {
           throw new HttpNotFoundException('No route found for ' . $this->request->getPathInfo());
+        }
 
         $controller = $params['controller'];
         $action = $params['action'];
@@ -148,17 +149,17 @@ abstract class Application
       $message = $this->isDebugMode() ? $e->getMessage() : 'Page not found.';
       $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
 
-      $this->response->setContent(<<<EOF
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>404</title>
-      </head>
-      <body>
-        {$message}
-      </body>
-      </html>
-      EOF);
-      }
+      // $this->response->setContent(<<<EOF
+      // <!DOCTYPE html>
+      // <html>
+      // <head>
+      //   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      //   <title>404</title>
+      // </head>
+      // <body>
+      //   {$message}
+      // </body>
+      // </html>
+      // EOF);
+     }
 }

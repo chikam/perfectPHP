@@ -6,7 +6,7 @@ class ClassLoader
 
     public function register()
     {
-        sql_autoload_register(array($this, 'loadClass'));
+        spl_autoload_register(array($this, 'loadClass'));
     }
 
     public function registerDir($dir)
